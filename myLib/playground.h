@@ -182,21 +182,39 @@ public:
     Rational(int num = 0 , int den = 1):value(static_cast<double>(num) / den), num(num),den(den){
         i = 1;
         i++;
-    };
+    }
+    ~Rational(){};
+    
     void setS(const int & a){
         s = a;
     }
     int getS() const{
         return s;
     }
+    Rational & operator += (const Rational &);
+    Rational & operator -= (const Rational &);
     operator double() const{
-        cout<<*this<<endl;
+//        cout<<*this<<endl;
         return value;
     }
     ostream & operator<<(ostream &c) {
         return c << this->num << "/" << this->den <<endl;
     }
+        
 };
+//const Rational operator+(const Rational&lhs, const Rational & rhs){
+//    return Rational(lhs) += rhs;
+//}
+//
+//const Rational operator-(const Rational & lhs, const Rational & rhs){
+//    return Rational(lhs) -= rhs;
+//}
+template <class T>
+const T operator + (const T & lhs, const T & rhs){
+    return T(lhs) += rhs;
+}
+
+
 void playGround(){
     string * ps = new string("this is new mem");
     void * rawS = operator new (sizeof(string) * ps->length());
