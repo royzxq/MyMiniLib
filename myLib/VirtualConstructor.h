@@ -57,6 +57,9 @@ NewsLetter::NewsLetter(const NewsLetter & rhs){
     }
 }
 
+NLComponent * NewsLetter::readComponent(istream &str){
+    return new TextBlock();
+}
 
 
 NewsLetter::NewsLetter(istream & s){

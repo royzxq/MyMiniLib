@@ -9,7 +9,7 @@
 #include <iostream>
 #include <string>
 #include <new>
-#include "playground.h"
+//#include "playground.h"
 
 using namespace std;
 int main(int argc, const char * argv[]) {
@@ -41,12 +41,12 @@ int main(int argc, const char * argv[]) {
 //    delete placeNewps;
 //    string * psa = new string[10];
 //    delete [] psa   ;
-    Rational ** a = new Rational *[2];
-    for (int i = 0 ; i < 2 ; ++i ) {
-        a[i] = new Rational(i,i+1);
-    }
-    a[0] -> setS(3);
-    cout << a[1] -> getS() <<endl;
+//    Rational ** a = new Rational *[2];
+//    for (int i = 0 ; i < 2 ; ++i ) {
+//        a[i] = new Rational(i,i+1);
+//    }
+//    a[0] -> setS(3);
+//    cout << a[1] -> getS() <<endl;
     
     return 0;
 }
