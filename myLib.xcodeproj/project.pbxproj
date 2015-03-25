@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7619C3601ABCD0ED000B004C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7619C35F1ABCD0ED000B004C /* main.cpp */; };
 		7619C3681ABCD12B000B004C /* playground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7619C3661ABCD12B000B004C /* playground.cpp */; };
+		76872F8C1AC20A07002065D5 /* VirtualConstructor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76872F8A1AC20A07002065D5 /* VirtualConstructor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		7619C35F1ABCD0ED000B004C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7619C3661ABCD12B000B004C /* playground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = playground.cpp; sourceTree = "<group>"; };
 		7619C3671ABCD12B000B004C /* playground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playground.h; sourceTree = "<group>"; };
+		76872F8A1AC20A07002065D5 /* VirtualConstructor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VirtualConstructor.cpp; sourceTree = "<group>"; };
+		76872F8B1AC20A07002065D5 /* VirtualConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualConstructor.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,8 @@
 				7619C35F1ABCD0ED000B004C /* main.cpp */,
 				7619C3661ABCD12B000B004C /* playground.cpp */,
 				7619C3671ABCD12B000B004C /* playground.h */,
+				76872F8A1AC20A07002065D5 /* VirtualConstructor.cpp */,
+				76872F8B1AC20A07002065D5 /* VirtualConstructor.h */,
 			);
 			path = myLib;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76872F8C1AC20A07002065D5 /* VirtualConstructor.cpp in Sources */,
 				7619C3681ABCD12B000B004C /* playground.cpp in Sources */,
 				7619C3601ABCD0ED000B004C /* main.cpp in Sources */,
 			);
@@ -238,6 +244,7 @@
 				7619C3651ABCD0ED000B004C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
