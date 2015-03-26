@@ -106,9 +106,62 @@ namespace PrintingStuff {
         ++numObj;
     }
     
+
+    
 }
 
+template <class BeingCounted>
+class Counted {
+private:
+    static const size_t maxNumObj ;
+    
+    static size_t numObj;
+    void init();
+protected:
+    Counted();
+    Counted(Counted & );
+    virtual ~Counted(){
+        --numObj;
+    }
+public:
+    class TooManyObj{};
+    static size_t objCount () {
+        return numObj;
+    }
+    
+};
 
+template <class BeingCounted>
+size_t Counted<BeingCounted>::numObj = 0;
+
+
+template <class BeingCounted>
+Counted<BeingCounted>::Counted () {
+    init();
+}
+
+template <class BeingCounted>
+void Counted<BeingCounted>::init() {
+    if(numObj > maxNumObj) throw TooManyObj();
+    ++numObj;
+}
+
+class Printer : public Counted<Printer> {
+    Printer();
+    Printer(const Printer &);
+    
+public:
+    static Printer * makePrinter();
+    static Printer * makePrinter(const Printer &);
+    
+    ~Printer();
+//    using Counted<Printer>::objCount;
+//    using Counted<Printer>::TooManyObj;
+};
+
+Printer::Printer() {
+
+}
 
 
 
