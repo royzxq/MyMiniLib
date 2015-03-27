@@ -4,117 +4,19 @@
 //
 //  Created by XinquanZhou on 3/24/15.
 //  Copyright (c) 2015 Xinquan Zhou. All rights reserved.
-//
+//  This is an implementation for a base class that can limit the number of instance that can be created, in order to dynamic create and destroy, use should use pointers to create such instance.
 
 #ifndef __myLib__LimitObjects__
 #define __myLib__LimitObjects__
 
 #include <stdio.h>
-#include <string>
-//using namespace std;
+#include "SmartPointers.h"
 
-class PrintJob;
 
-namespace PrintingStuff {
-    class Printer {
-        Printer();
-        Printer(const Printer & rhs);
-        
-    public:
-        static Printer & thePrinter();
-        void submitJob(const PrintJob & job);
-        void reset();
-        void printJob(std::string & buffer);
-        friend Printer& thePrinter();
-    };
-    
-    
-    Printer & Printer::thePrinter(){
-        static Printer p;
-        return p;
-    }
-    
-    class MultiPrinter{
-    public:
-        MultiPrinter();
-        ~MultiPrinter();
-    private:
-        static size_t numObj;
-        MultiPrinter(const MultiPrinter & rhs);
-    };
-    
-    size_t MultiPrinter::numObj = 0;
-    MultiPrinter::MultiPrinter(){
-        if(numObj > 1){
-            throw ;
-        }
-        ++numObj;
-    }
-    MultiPrinter::~MultiPrinter(){
-        --numObj;
-    }
-    
-    class FSA{
-    public:
-        static FSA * makeFSA();
-        static FSA * makeFSA(const FSA & rhs);
-        
-    private:
-        static size_t numObj;
-        FSA();
-        FSA(const FSA& rhs);
-    };
-    
-    void TestFSA(){
-        std::auto_ptr<FSA> pfsa1(FSA::makeFSA());
-        std::auto_ptr<FSA> pfsa2(FSA::makeFSA(*pfsa1));
-    }
-    
-    size_t FSA::numObj = 0;
-    FSA* FSA::makeFSA(){
-        if (numObj > 1) {
-            throw ;
-        }
-        ++ numObj ;
-        return new FSA();
-    }
-    FSA* FSA::makeFSA(const PrintingStuff::FSA &rhs){
-        return new FSA(rhs);
-    }
-    
-    class DynamicMultiPrinter{
-    public:
-        static DynamicMultiPrinter * makePrinter();
-        static DynamicMultiPrinter * makePrinter(const DynamicMultiPrinter &);
-    private:
-        static size_t numObj;
-        static const size_t maxNumObj = 10;
-        DynamicMultiPrinter();
-        ~DynamicMultiPrinter();
-    };
-    size_t DynamicMultiPrinter::numObj = 0;
-    DynamicMultiPrinter * DynamicMultiPrinter::makePrinter(){
-        if (numObj > maxNumObj) {
-            return nullptr;
-        }
-        return new DynamicMultiPrinter();
-    }
-    DynamicMultiPrinter::DynamicMultiPrinter(){
-        if(numObj > maxNumObj){
-            throw ;
-        }
-        ++numObj;
-    }
-    
-
-    
-}
-
-template <class BeingCounted>
+//template <class BeingCounted>
 class Counted {
 private:
-    static const size_t maxNumObj ;
-    
+    static const size_t maxNumObj ; // the max number of objects should be user defined
     static size_t numObj;
     void init();
 protected:
@@ -124,45 +26,58 @@ protected:
         --numObj;
     }
 public:
-    class TooManyObj{};
+    class TooManyObj{}; // the exception class that can be user defined for when the number of obj is over the maximum
     static size_t objCount () {
         return numObj;
     }
     
 };
 
-template <class BeingCounted>
-size_t Counted<BeingCounted>::numObj = 0;
+size_t Counted::numObj = 0;
 
 
-template <class BeingCounted>
-Counted<BeingCounted>::Counted () {
+Counted::Counted () {
     init();
 }
 
-template <class BeingCounted>
-void Counted<BeingCounted>::init() {
+void Counted::init() {
     if(numObj > maxNumObj) throw TooManyObj();
     ++numObj;
 }
 
-class Printer : public Counted<Printer> {
-    Printer();
-    Printer(const Printer &);
-    
+// Example to use such base class
+
+class FSA : public Counted{
 public:
-    static Printer * makePrinter();
-    static Printer * makePrinter(const Printer &);
+    static FSA * makeFSA();
+    static FSA * makeFSA(const FSA & rhs);
     
-    ~Printer();
-//    using Counted<Printer>::objCount;
-//    using Counted<Printer>::TooManyObj;
+private:
+    FSA(); // cannot be created directly
+    FSA(const FSA& rhs);
 };
 
-Printer::Printer() {
+FSA * FSA::makeFSA(){
+    try {
+        return new FSA(); // do not have to carry about the limit of obj.
 
+    } catch (TooManyObj & e) {
+        // do something;
+        throw ;
+        return nullptr;
+    }
 }
 
+FSA * FSA::makeFSA(const FSA &rhs){
+    return  new FSA(rhs);
+}
+
+const size_t Counted::maxNumObj = 10;
+
+void useFSA(){
+    SmartPtr<FSA> pFSA1(FSA::makeFSA());
+    SmartPtr<FSA> PFSA2(FSA::makeFSA(*pFSA1));
+}
 
 
 
