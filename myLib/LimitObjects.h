@@ -51,7 +51,6 @@ class FSA : public Counted{
 public:
     static FSA * makeFSA();
     static FSA * makeFSA(const FSA & rhs);
-    
 private:
     FSA(); // cannot be created directly
     FSA(const FSA& rhs);
@@ -69,7 +68,7 @@ FSA * FSA::makeFSA(){
 }
 
 FSA * FSA::makeFSA(const FSA &rhs){
-    return  new FSA(rhs);
+    return new FSA(rhs);
 }
 
 const size_t Counted::maxNumObj = 10;
