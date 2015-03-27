@@ -89,6 +89,29 @@ bool HeapTracked::isOnHeap() const{
     }
 }
 
+namespace Prohibit_Heap {
+    class nonHeapUPNumber{ // class that cannot be init directly by new
+    private:
+        static void * operator new(size_t size);
+        static void operator delete(void * ptr);
+        static void * operator new[](size_t size);
+        static void operator delete[](void * ptr);
+        
+    };
+    
+    class deriveNonHeapNumber : public nonHeapUPNumber{ // also cannot be init directly by new
+    };
+    
+    class Asset{ // can be init by new although it contain nonHeapUPNumber member
+    public:
+        Asset(int initValue);
+    private:
+        nonHeapUPNumber value;
+    }
+    
+    
+}
+
 
 
 
