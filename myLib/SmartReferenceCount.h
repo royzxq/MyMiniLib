@@ -4,7 +4,8 @@
 //
 //  Created by XinquanZhou on 3/28/15.
 //  Copyright (c) 2015 Xinquan Zhou. All rights reserved.
-//
+//  This is an implementation for reference count base class using smart pointers
+//  And the example string class using this technique
 
 #ifndef __myLib__SmartReferenceCount__
 #define __myLib__SmartReferenceCount__
@@ -13,7 +14,7 @@
 #include <String.h>
 
 template <class T>
-class RCPtr {
+class RCPtr { // reference count smart pointer
     T * pointee;
     void init();
 public:
@@ -28,7 +29,7 @@ public:
 
 
 
-class SmartRCObj{
+class SmartRCObj{ // the reference count base class
 public:
     SmartRCObj();
     SmartRCObj(const SmartRCObj &);
@@ -51,6 +52,7 @@ private:
 class SmartString{
 public:
     SmartString(const char * value = "");
+    // by using smart pointers, we do not need to implement copy constructor and assignment operator
 //    SmartString(const SmartString &);
 //    SmartString& operator=(const SmartString&);
     const char & operator[](int index) const;
@@ -68,7 +70,7 @@ private:
         ~SmartStringValue();
         
     };
-    RCPtr<SmartStringValue> value;
+    RCPtr<SmartStringValue> value; // use smart pointer to point reference count objects
 };
 
 
