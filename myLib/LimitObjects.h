@@ -46,37 +46,37 @@ void Counted::init() {
 }
 
 // Example to use such base class
-
-class FSA : public Counted{
-public:
-    static FSA * makeFSA();
-    static FSA * makeFSA(const FSA & rhs);
-private:
-    FSA(); // cannot be created directly
-    FSA(const FSA& rhs);
-};
-
-FSA * FSA::makeFSA(){
-    try {
-        return new FSA(); // do not have to carry about the limit of obj.
-
-    } catch (TooManyObj & e) {
-        // do something;
-        throw ;
-        return nullptr;
-    }
-}
-
-FSA * FSA::makeFSA(const FSA &rhs){
-    return new FSA(rhs);
-}
-
+//
+//class FSA : public Counted{
+//public:
+//    static FSA * makeFSA();
+//    static FSA * makeFSA(const FSA & rhs);
+//private:
+//    FSA(); // cannot be created directly
+//    FSA(const FSA& rhs);
+//};
+//
+//FSA * FSA::makeFSA(){
+//    try {
+//        return new FSA(); // do not have to carry about the limit of obj.
+//
+//    } catch (TooManyObj & e) {
+//        // do something;
+//        throw ;
+//        return nullptr;
+//    }
+//}
+//
+//FSA * FSA::makeFSA(const FSA &rhs){
+//    return new FSA(rhs);
+//}
+//
 const size_t Counted::maxNumObj = 10;
-
-void useFSA(){
-    SmartPtr<FSA> pFSA1(FSA::makeFSA());
-    SmartPtr<FSA> PFSA2(FSA::makeFSA(*pFSA1));
-}
+//
+//void useFSA(){
+//    SmartPtr<FSA> pFSA1(FSA::makeFSA());
+//    SmartPtr<FSA> PFSA2(FSA::makeFSA(*pFSA1));
+//}
 
 
 
