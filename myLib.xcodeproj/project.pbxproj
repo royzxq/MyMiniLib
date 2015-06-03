@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		7619C3601ABCD0ED000B004C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7619C35F1ABCD0ED000B004C /* main.cpp */; };
-		76872F8C1AC20A07002065D5 /* VirtualConstructor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76872F8A1AC20A07002065D5 /* VirtualConstructor.cpp */; };
+		7637B9661AC73A6400F0ACF9 /* SmartReferenceCount.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7637B9641AC73A6400F0ACF9 /* SmartReferenceCount.cpp */; };
+		766DAF861ACA2175006139D3 /* VirtualFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 766DAF841ACA2175006139D3 /* VirtualFunction.cpp */; };
 		76872F8F1AC2567D002065D5 /* LimitObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76872F8D1AC2567D002065D5 /* LimitObjects.cpp */; };
+		76CF71C81AC63CB000326DFF /* ReferenceCount.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76CF71C61AC63CB000326DFF /* ReferenceCount.cpp */; };
+		76D6A5981AC461D3002081DA /* SmartPointers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 76D6A5961AC461D3002081DA /* SmartPointers.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,10 +30,17 @@
 /* Begin PBXFileReference section */
 		7619C35C1ABCD0ED000B004C /* myLib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = myLib; sourceTree = BUILT_PRODUCTS_DIR; };
 		7619C35F1ABCD0ED000B004C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		76872F8A1AC20A07002065D5 /* VirtualConstructor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VirtualConstructor.cpp; sourceTree = "<group>"; };
-		76872F8B1AC20A07002065D5 /* VirtualConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualConstructor.h; sourceTree = "<group>"; };
+		7637B9641AC73A6400F0ACF9 /* SmartReferenceCount.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmartReferenceCount.cpp; sourceTree = "<group>"; };
+		7637B9651AC73A6400F0ACF9 /* SmartReferenceCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartReferenceCount.h; sourceTree = "<group>"; };
+		764162551AC39613007EEA2E /* Heap-based.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Heap-based.h"; sourceTree = "<group>"; };
+		766DAF841ACA2175006139D3 /* VirtualFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VirtualFunction.cpp; sourceTree = "<group>"; };
+		766DAF851ACA2175006139D3 /* VirtualFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualFunction.h; sourceTree = "<group>"; };
 		76872F8D1AC2567D002065D5 /* LimitObjects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LimitObjects.cpp; sourceTree = "<group>"; };
 		76872F8E1AC2567D002065D5 /* LimitObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LimitObjects.h; sourceTree = "<group>"; };
+		76CF71C61AC63CB000326DFF /* ReferenceCount.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ReferenceCount.cpp; sourceTree = "<group>"; };
+		76CF71C71AC63CB000326DFF /* ReferenceCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceCount.h; sourceTree = "<group>"; };
+		76D6A5961AC461D3002081DA /* SmartPointers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmartPointers.cpp; sourceTree = "<group>"; };
+		76D6A5971AC461D3002081DA /* SmartPointers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartPointers.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,10 +74,17 @@
 			isa = PBXGroup;
 			children = (
 				7619C35F1ABCD0ED000B004C /* main.cpp */,
-				76872F8A1AC20A07002065D5 /* VirtualConstructor.cpp */,
-				76872F8B1AC20A07002065D5 /* VirtualConstructor.h */,
 				76872F8D1AC2567D002065D5 /* LimitObjects.cpp */,
 				76872F8E1AC2567D002065D5 /* LimitObjects.h */,
+				764162551AC39613007EEA2E /* Heap-based.h */,
+				76D6A5961AC461D3002081DA /* SmartPointers.cpp */,
+				76D6A5971AC461D3002081DA /* SmartPointers.h */,
+				76CF71C61AC63CB000326DFF /* ReferenceCount.cpp */,
+				76CF71C71AC63CB000326DFF /* ReferenceCount.h */,
+				7637B9641AC73A6400F0ACF9 /* SmartReferenceCount.cpp */,
+				7637B9651AC73A6400F0ACF9 /* SmartReferenceCount.h */,
+				766DAF841ACA2175006139D3 /* VirtualFunction.cpp */,
+				766DAF851ACA2175006139D3 /* VirtualFunction.h */,
 			);
 			path = myLib;
 			sourceTree = "<group>";
@@ -128,9 +145,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76872F8C1AC20A07002065D5 /* VirtualConstructor.cpp in Sources */,
+				7637B9661AC73A6400F0ACF9 /* SmartReferenceCount.cpp in Sources */,
+				76D6A5981AC461D3002081DA /* SmartPointers.cpp in Sources */,
 				76872F8F1AC2567D002065D5 /* LimitObjects.cpp in Sources */,
 				7619C3601ABCD0ED000B004C /* main.cpp in Sources */,
+				76CF71C81AC63CB000326DFF /* ReferenceCount.cpp in Sources */,
+				766DAF861ACA2175006139D3 /* VirtualFunction.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
