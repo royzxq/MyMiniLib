@@ -7,9 +7,11 @@
 //
 
 #include <iostream>
+#include "LLTest.h"
+#include "gtest/gtest.h"
 
-int main(int argc, const char * argv[]) {
+int main(int argc, char * argv[]) {
     // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
