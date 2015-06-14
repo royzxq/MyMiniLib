@@ -33,6 +33,8 @@ public:
     int Size() const;
 };
 
+
+
 template <class T>
 MinHeap<T>::MinHeap(const std::vector<T> & Vec):_vector(Vec){
     _size = Vec.size();

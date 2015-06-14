@@ -110,11 +110,12 @@ public:
 
 template <class T>
 void SLinkedList<T>::_Destroy() {
-    Node<T> * n = head;
     while (head) {
+        Node<T> * n = head;
+        if (n) {
+            delete n;
+        }
         head = head -> next;
-        delete n;
-        n = head;
     }
 }
 
@@ -168,16 +169,13 @@ template <class T>
  void SLinkedList<T>::InsertAfterHead(const T Val) {
     Node<T> * node = new Node<T>(Val);
     _length ++;
-    if (!head) {
-        head = new Node<T>();
+    if (!tail) {
         head -> next = node;
         tail = node;
         return;
     }
-    Node<T> * n = head -> next;
+    node -> next = head -> next;
     head -> next = node;
-    node -> next = n;
-    
 }
 
 template <class T>
@@ -197,7 +195,7 @@ template <class T>
 template <class T>
  void SLinkedList<T>::DeleteByValue(const T Val) {
     Node<T> * cur = head;
-    while (cur) {
+    while (cur != tail) {
         if (cur->next->value == Val) {
             _DeleteNextNode(cur);
         }
@@ -228,7 +226,7 @@ template <class T>
 void SLinkedList<T>::Print() const {
     Node<T> * cur = head;
     while (cur!=tail) {
-        std::cout << cur->next -> value << " ";
+        std::cout << cur-> next -> value << " ";
         cur = cur -> next;
     }
 }
@@ -334,6 +332,7 @@ void DLinkedList<T>::DeleteNode(Node<T> *N) {
     while (cur) {
         if (cur == N) {
             _DeleteNode(cur);
+            this -> _length -- ;
             return;
         }
         else{
@@ -345,15 +344,23 @@ void DLinkedList<T>::DeleteNode(Node<T> *N) {
 template <class T>
 void DLinkedList<T>::DeleteByValue(const T Val) {
     Node<T> * cur = this->head->next;
-    while (cur) {
+    while (cur != this -> tail) {
         if (cur->value == Val) {
             Node<T> * node_to_be_delete = cur;
             cur = cur -> next;
             _DeleteNode(node_to_be_delete);
+            this -> _length -- ;
+
         }
         else{
             cur = cur -> next;
         }
+    }
+    if (this -> tail -> value == Val) {
+        cur = this -> tail;
+        this -> tail = this -> tail -> prev;
+        this -> _length -- ;
+        delete cur;
     }
 
 }
@@ -369,6 +376,7 @@ void  DLinkedList<T>::DeleteByPos(int Pos) {
         while (cur!=this -> tail) {
             if (curPos++ == Pos) {
                 _DeleteNode(cur);
+                this -> _length -- ;
                 return;
             }
             cur = cur -> next;
