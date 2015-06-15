@@ -15,6 +15,7 @@
 
 template <class T>
 class MinHeap {
+private:
     std::vector<T> _vector;
     int _getParentIdx(int index) const;
     int _getLeftIdx(int index) const;
@@ -23,9 +24,13 @@ class MinHeap {
     void _bubbleUp(int index);
     void _bubleDown(int index);
     void _heapify();
+    
+    typedef bool (*comp)(const T & left, const T & right);
+    comp _cmp;
 public:
-    MinHeap():_size(0){}
-    MinHeap(const std::vector<T> & Vec);
+    MinHeap():_size(0),_cmp(nullptr){}
+    MinHeap(const std::vector<T> & Vec, comp C = nullptr);
+    void SetCmp(comp Cmp);
     void Insert(T Val);
     void DecreaseKey(T val, int index);
     T DeleteMin();
@@ -36,11 +41,16 @@ public:
 
 
 template <class T>
-MinHeap<T>::MinHeap(const std::vector<T> & Vec):_vector(Vec){
+MinHeap<T>::MinHeap(const std::vector<T> & Vec, comp C):_vector(Vec),_cmp(C){
     _size = Vec.size();
     _heapify();
 }
 
+
+template <class T>
+void MinHeap<T>::SetCmp(comp Cmp) {
+    _cmp = Cmp;
+}
 // the input of output index are all zero-based
 template <class T>
 int MinHeap<T>::_getParentIdx(int index) const {
@@ -78,14 +88,27 @@ template <class T>
 void MinHeap<T>::_bubbleUp(int curIdx) {
     int parIdx = _getParentIdx(curIdx);
     while ( parIdx != -1) {
-        if (_vector[curIdx] < _vector[parIdx]) {
-            std::swap(_vector[curIdx], _vector[parIdx]);
-            curIdx = parIdx;
-            parIdx = _getParentIdx(parIdx);
+        if (!_cmp) {
+            if (_vector[curIdx] < _vector[parIdx]) {
+                std::swap(_vector[curIdx], _vector[parIdx]);
+                curIdx = parIdx;
+                parIdx = _getParentIdx(parIdx);
+            }
+            else{
+                break;
+            }
         }
         else{
-            break;
+            if ((*_cmp)( _vector[curIdx] , _vector[parIdx])) {
+                std::swap(_vector[curIdx], _vector[parIdx]);
+                curIdx = parIdx;
+                parIdx = _getParentIdx(parIdx);
+            }
+            else{
+                break;
+            }
         }
+        
     }
 }
 
@@ -97,15 +120,31 @@ void MinHeap<T>::_bubleDown(int index) {
     }
     int right = _getRightIdx(index);
     int minIdx = index;
-    if (_vector[index] > _vector[left]) {
-        minIdx = left;
+    if (!_cmp) {
+        if (_vector[index] > _vector[left]) {
+            minIdx = left;
+        }
+        if (right != -1 && _vector[minIdx] > _vector[right]) {
+            minIdx = right;
+        }
+        if (minIdx != index) {
+            std::swap(_vector[index], _vector[minIdx]);
+            _bubleDown(minIdx);
+        }
+
     }
-    if (right != -1 && _vector[minIdx] > _vector[right]) {
-        minIdx = right;
-    }
-    if (minIdx != index) {
-        std::swap(_vector[index], _vector[minIdx]);
-        _bubleDown(minIdx);
+    else{
+        if ((*_cmp)(_vector[index],_vector[left])) {
+            minIdx = left;
+        }
+        if (right != -1 && (*_cmp)(_vector[minIdx] , _vector[right])) {
+            minIdx = right;
+        }
+        if (minIdx != index) {
+            std::swap(_vector[index], _vector[minIdx]);
+            _bubleDown(minIdx);
+        }
+
     }
 }
 template <class T>
