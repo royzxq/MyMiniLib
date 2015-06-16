@@ -14,26 +14,26 @@
 #include <numeric>
 #include "LinkedList.h"
 #include "MinHeap.h"
+#include <memory>
 
 using namespace std;
 
-bool intComp(const int &a, const int& b){
-    return a < b;
+int&  add(int a, int b){
+    int c = a + b;
+    return c;
 }
-
 int main(int argc, const char * argv[]) {
-    vector<int> ves;
-    for (int i = 10 ; i > 0 ; i--) {
-        ves.push_back(i);
-    }
-    typedef bool (*C)(const int&, const int&);
-    C funptr = & intComp;
-
-    MinHeap<int> * mh = new MinHeap<int>(ves,funptr);
-    
-    for (int i = 0 ; i < 10; i++) {
-        int j = mh -> DeleteMin();
-        cout << j << " ";
-    }
-    
+//    vector<int> ves;
+//    for (int i = 10 ; i > 0 ; i--) {
+//        ves.push_back(i);
+//    }
+//    typedef bool (*C)(const int&, const int&);
+//    C funptr = & intComp;
+//
+//    MinHeap<int> * mh = new MinHeap<int>(ves,funptr);
+//    
+//    for (int i = 0 ; i < 10; i++) {
+//        int j = mh -> DeleteMin();
+//        cout << j << " ";
+//    }
 }

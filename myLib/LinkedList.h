@@ -12,6 +12,7 @@
 #include <vector>
 #include <iostream>
 #include <stack>
+#include "MyExceptions.h"
 //using namespace::std;
 
 
@@ -249,7 +250,7 @@ template <class T>
  void SLinkedList<T>::DeleteByPos(int Pos) {
     try {
         if (Pos >= _length || Pos < 0) {
-            throw;
+            throw myBeyondBoundry;
         }
         Node<T> * cur = head;
         int curPos = 0;
