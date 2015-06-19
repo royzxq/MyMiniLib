@@ -15,25 +15,23 @@
 #include "LinkedList.h"
 #include "MinHeap.h"
 #include <memory>
-
+#include <mutex>
 using namespace std;
 
-int&  add(int a, int b){
-    int c = a + b;
-    return c;
+int t = 0 ;
+std::mutex mtx;
+void P(){
+    mtx.lock();
+    cout << "timer equals " << t << endl;
+    t++;
+    mtx.unlock();
 }
 int main(int argc, const char * argv[]) {
-//    vector<int> ves;
-//    for (int i = 10 ; i > 0 ; i--) {
-//        ves.push_back(i);
-//    }
-//    typedef bool (*C)(const int&, const int&);
-//    C funptr = & intComp;
-//
-//    MinHeap<int> * mh = new MinHeap<int>(ves,funptr);
-//    
-//    for (int i = 0 ; i < 10; i++) {
-//        int j = mh -> DeleteMin();
-//        cout << j << " ";
-//    }
+    auto fut1 = async(P);
+    auto fut2 = async(P);
+    auto fut3 = async(P);
+    mtx.lock();
+    cout << "this is in the main "<<  t << endl;
+    mtx.unlock();
+    return 1;
 }
