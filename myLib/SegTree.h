@@ -31,6 +31,8 @@ public:
     typedef T (*comp)(const T & left, const T & right);
 
     SegTree(int start, int end);
+    
+    // users can build the segtree with a vector, optionally provide the ruling function pointer
     SegTree<T>(std::vector<T> & vec, comp cmp = nullptr);
     
     virtual ~SegTree<T>(){
@@ -39,22 +41,29 @@ public:
         }
     }
     
+    // to query the result with the interval
     T Query(int start, int end);
     
+    // change the value of the tree
     void Update(int index, T value);
     
+    // Print each node in the order of bfs
     void Print() const;
 private:
     SegTreeNode<T> * root;
+    
+    // this is the rule of building segment tree, by default it will be a interval sum tree
     comp _cmp;
     
     SegTreeNode<T> * _build(int start, int end);
+    
+    
     SegTreeNode<T> * _build(std::vector<T> & vec, int start, int end);
 
     
     void _destroy(SegTreeNode<T> * root);
-    
     T _query(SegTreeNode<T> * root, int start, int end);
+    
     void _update(SegTreeNode<T> * root, int index, T value);
 };
 
