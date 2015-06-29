@@ -35,4 +35,10 @@ class InvalidParams : public std::exception{
     }
 } myInvalidParams;
 
+
+class NoValidOp : public std::exception{
+    virtual const char * what() const throw(){
+        return "There is no valid operation";
+    }
+} myNoValidOp; 
 #endif

@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <vector>
 #include <utility>
-
+#include "MyExceptions.h"
 template <class T>
 class MinHeap {
 private:
@@ -165,7 +165,7 @@ template <class T>
 void MinHeap<T>::DecreaseKey(T val, int index) {
     try {
         if (index < 0 || index >= _size ) {
-            throw ;
+            throw myBeyondBoundry;
         }
         _bubbleUp(index);
         

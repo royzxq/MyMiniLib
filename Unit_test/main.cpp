@@ -7,9 +7,9 @@
 //
 
 #include <iostream>
-#include "LLTest.h"
+//#include "LLTest.h"
 #include "gtest/gtest.h"
-
+#include "SegTreeTest.h"
 int main(int argc, char * argv[]) {
     // insert code here...
     ::testing::InitGoogleTest(&argc, argv);
