@@ -12,11 +12,12 @@
 #include <iostream>
 #include <future>
 #include <numeric>
-#include "LinkedList.h"
-#include "MinHeap.h"
+//#include "LinkedList.h"
+//#include "MinHeap.h"
 #include <memory>
 #include <mutex>
 #include "SegTree.h"
+#include "Trie.h"
 
 using namespace std;
 

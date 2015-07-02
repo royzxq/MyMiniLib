@@ -9,11 +9,7 @@
 #ifndef __myLib__Trie__
 #define __myLib__Trie__
 
-#include <stdio.h>
 #include <vector>
-
-
-
 
 
 class TrieNode {

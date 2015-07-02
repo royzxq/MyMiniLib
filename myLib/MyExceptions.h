@@ -11,34 +11,26 @@
 #include <exception>
 
 class BeyondBoundry : public std::exception {
-    virtual const char * what() const throw(){
-        return "The input parameter is out of boundry";
-    }
-} myBeyondBoundry;
+    virtual const char * what() const throw();
+};
 
 
 class FailInit : public std::exception {
-    virtual const char * what() const throw(){
-        return "Something wrong when you initialize objects";
-    }
-} myFailInit;
+    virtual const char * what() const throw();
+} ;
 
 class FileIOError : public std::exception{
     virtual const char * what() const throw(){
         return "Something wrong when reading or writing files";
     }
-} myFileIOError;
+} ;
 
 class InvalidParams : public std::exception{
-    virtual const char * what() const throw(){
-        return "The parameters are not allowed";
-    }
-} myInvalidParams;
+    virtual const char * what() const throw();
+} ;
 
 
 class NoValidOp : public std::exception{
-    virtual const char * what() const throw(){
-        return "There is no valid operation";
-    }
-} myNoValidOp; 
+    virtual const char * what() const throw();
+}; 
 #endif

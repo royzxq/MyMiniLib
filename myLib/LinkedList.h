@@ -250,7 +250,7 @@ template <class T>
  void SLinkedList<T>::DeleteByPos(int Pos) {
     try {
         if (Pos >= _length || Pos < 0) {
-            throw myBeyondBoundry;
+            throw BeyondBoundry();
         }
         Node<T> * cur = head;
         int curPos = 0;
@@ -370,7 +370,7 @@ template <class T>
 void  DLinkedList<T>::DeleteByPos(int Pos) {
     try {
         if (Pos >= this-> _length || Pos < 0) {
-            throw;
+            throw BeyondBoundry();
         }
         Node<T> * cur = this -> head -> next;
         int curPos = 0;

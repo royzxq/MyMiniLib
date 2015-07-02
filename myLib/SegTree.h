@@ -126,7 +126,7 @@ template <class T>
 SegTree<T>::SegTree(int start, int end){
     try {
         if (end < start) {
-            throw myInvalidParams;
+            throw InvalidParams();
         }
         root = _build(start, end);
     } catch (InvalidParams & e) {
@@ -168,7 +168,7 @@ template <class T>
 T SegTree<T>::Query(int start, int end) {
     try {
         if (end < start || start > root-> end || end < root->start) {
-            throw myInvalidParams;
+            throw InvalidParams();
         }
         return _query(root, start, end);
     } catch (InvalidParams & e) {
@@ -224,7 +224,7 @@ template <class T>
 void SegTree<T>::Update(int index, T value) {
     try {
         if (index < root->start || index > root->end) {
-            throw myInvalidParams;
+            throw InvalidParams();
         }
         _update(root, index, value);
     } catch (InvalidParams & e) {

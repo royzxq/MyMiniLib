@@ -165,7 +165,7 @@ template <class T>
 void MinHeap<T>::DecreaseKey(T val, int index) {
     try {
         if (index < 0 || index >= _size ) {
-            throw myBeyondBoundry;
+            throw BeyondBoundry();
         }
         _bubbleUp(index);
         

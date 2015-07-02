@@ -26,7 +26,7 @@ void Trie::Insert(std::string& s){
                 }
             }
             else{
-                throw myInvalidParams;
+                throw InvalidParams();
             }
         } catch (InvalidParams & e ) {
             throw ;
@@ -54,7 +54,7 @@ bool Trie::Search(std::string &key){
                 }
             }
             else{
-                throw myInvalidParams;
+                throw InvalidParams();
             }
         }
         return cur->exist;
@@ -78,7 +78,7 @@ bool Trie::StartWith(std::string &prefix){
                 }
             }
             else{
-                throw myInvalidParams;
+                throw InvalidParams();
             }
         }
         return true;
