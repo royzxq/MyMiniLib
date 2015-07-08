@@ -33,7 +33,7 @@ public:
     row_type _split(const std::string s, char delim);
     bool strhaschar(const char * haystack, char needle);
     FileReader(const char * filename);
-    ~FileReader();
+    virtual ~FileReader(){}
 };
 
 class DictFile : public FileReader {
@@ -50,7 +50,7 @@ public:
     };
     std::vector<std::pair<std::string, float>> getvec(std::string s);
     float getProb(std::string s1);
-    ~DictFile();
+    virtual ~DictFile(){}
     
     
 };
@@ -68,7 +68,7 @@ public:
     InputFile(const char * filename):FileReader(filename){
         _parsebuf();
     }
-    ~InputFile();
+    ~InputFile(){}
     std::string getElem(size_t row, size_t col) const{
         std::string res;
         if (row >= _numlines || col >= _numstrips ) {

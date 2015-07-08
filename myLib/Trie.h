@@ -10,13 +10,13 @@
 #define __myLib__Trie__
 
 #include <vector>
-
+#include <memory>
 
 class TrieNode {
 public:
     char val;
     bool exist;
-    std::vector<TrieNode *> next;
+    std::vector<std::shared_ptr<TrieNode> > next;
     
     TrieNode(char c): val(c), exist(false){
         next.assign(26, nullptr);
@@ -33,7 +33,7 @@ public:
     Trie():root(new TrieNode()){}
     Trie(std::string & s);
     virtual ~Trie(){
-        _destroy(root);
+//        _destroy(root);
     }
     
     void Insert(std::string& s);
@@ -41,8 +41,9 @@ public:
     bool StartWith(std::string& prefix);
     
 private:
-    TrieNode * root;
-    void _destroy(TrieNode * node);
+//    TrieNode * root;
+    std::shared_ptr<TrieNode> root;
+//    void _destroy(TrieNode * node);
 };
 
 

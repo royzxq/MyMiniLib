@@ -10,14 +10,16 @@
 
 FileReader::FileReader(const char * filename){
     _filename = filename;
-    std::ifstream file(filename);
-    while (std::getline(file,_row)) {
-        file_buf.push_back(_row);
-        _numcol ++;
+    try {
+        std::ifstream file(filename);
+        while (std::getline(file,_row)) {
+            file_buf.push_back(_row);
+            _numcol ++;
+        }
+    } catch (std::exception & e) {
+        throw ;
     }
-}
-
-FileReader::~FileReader(){
+    
 }
 
 
