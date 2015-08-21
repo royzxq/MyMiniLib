@@ -1,0 +1,7 @@
+/**/Builds/
+.DS_Store
+*~
+*xcodeproj
+/DerivedData/
+/myLib/main.cpp
+
