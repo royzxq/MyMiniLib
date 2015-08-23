@@ -9,7 +9,7 @@
 #ifndef myLib_UnionFind_h
 #define myLib_UnionFind_h
 
-#include <unordered_set>
+#include <set>
 
 template<class T>
 class Node{
@@ -31,10 +31,16 @@ public:
 template <class T>
 class UnionFind {
 private:
-    std::unordered_set<Node<T>*> roots;
+    std::set<Node<T>*> roots;
 
     
 public:
+    ~UnionFind(){
+        for(auto x : roots){
+            delete x;
+            x = nullptr;
+        }
+    }
     Node<T> * makeSet(){
         Node<T> * root = new Node<T>();
         roots.insert(root);
@@ -64,6 +70,9 @@ public:
             rx -> rank ++;
             roots.erase(ry);
         }
+    }
+    int UnionSize() const{
+        return roots.size();
     }
 
 };
