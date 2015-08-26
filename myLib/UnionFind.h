@@ -32,14 +32,15 @@ template <class T>
 class UnionFind {
 private:
     std::set<Node<T>*> roots;
-
+    struct Deleter{
+        void operator()(T * ptr){
+            delete ptr;
+        }
+    };
     
 public:
     ~UnionFind(){
-        for(auto x : roots){
-            delete x;
-            x = nullptr;
-        }
+        for_each(roots.begin(), roots.end(), Deleter());
     }
     Node<T> * makeSet(){
         Node<T> * root = new Node<T>();
