@@ -213,5 +213,152 @@ public:
     }
 };
 
+/*
+ 4. State pattern --> wraping the class with another class
+ */
+class StateMachine;
 
+class State{
+protected:
+    StateMachine * machine;
+public:
+    State(StateMachine * s): machine(s){}
+    virtual ~State(){}
+    virtual void interface1() = 0 ;
+    virtual void interface2() = 0;
+};
+
+class State1 : public State{
+public:
+    State1(StateMachine * s):State(s){
+    }
+    void interface1() override;
+    void interface2() override;
+};
+
+class State2 : public State{
+public:
+    State2(StateMachine * s):State(s){}
+    void interface1() override;
+    void interface2() override;
+};
+
+
+class StateMachine{
+private:
+    State * state1;
+    State * state2;
+    
+    State * state;
+public:
+    StateMachine(){
+        state1 = new State1(this);
+        state2 = new State2(this);
+        
+        state = state1;
+    }
+    ~StateMachine(){
+        delete state1;
+        delete state2;
+    }
+    void interface1(){
+        state->interface1();
+    }
+    void interface2(){
+        state -> interface2();
+    }
+    
+    State * getState(){
+        return state;
+    }
+    
+    void setState(State * s){
+        state = s;
+    }
+    
+    State * getState1(){
+        return state1;
+    }
+    
+    State * getState2(){
+        return state2;
+    }
+};
+
+void State1::interface1() {
+    cout << "In state 1, will transfer to state2"<<endl;
+    machine -> setState(machine->getState2());
+}
+
+void State1::interface2(){
+    cout << "In state 1, will stay in state 1" << endl;
+}
+
+void State2::interface1(){
+    cout << "In state 2, will transfer to state 1"<<endl;
+    machine -> setState(machine->getState1());
+}
+void State2::interface2(){
+    cout << "In state 2, will stay in state 2" << endl;
+}
+
+/*
+ 5. Singleton pattern --> ensure only one instance is created
+ */
+        
+class Singleton{
+protected:
+    Singleton(){}
+private:
+    Singleton(Singleton const &);
+    void operator = (Singleton const&);
+public:
+    static Singleton & getInstance(){
+        static Singleton instance = Singleton();
+        return instance;
+    }
+};
+        
+/*
+ 6. Factory pattern --> dynamically create different instance
+ */
+        
+class AbstractClass{
+protected:
+    string name;
+public:
+    void display(){
+        cout << " My name is "<< name << endl;
+    }
+};
+
+class ConcreteClass1 : public AbstractClass{
+public:
+    ConcreteClass1(){
+        name = "Concrete Class 1";
+    }
+};
+
+class ConcreteClass2 : public AbstractClass{
+public:
+    ConcreteClass2(){
+        name = "Concrete Class 2" ;
+    }
+};
+        
+class Factory{
+public:
+    AbstractClass * createInstance(string name){
+        AbstractClass * instance = nullptr;
+        if (name == "class1") {
+            instance = new ConcreteClass1();
+        }
+        else if (name == "class2"){
+            instance = new ConcreteClass2();
+        }
+        return instance;
+    }
+};
+        
+        
 #endif /* DesignPattern_h */
